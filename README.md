@@ -1,6 +1,6 @@
 # Radar LCC
 
-Introdução
+# Introdução
 O Radar LCC é um sistema web desenvolvido em Laravel 11 (PHP 8.2) voltado para gestão e análise de custos do ciclo de vida (LCC – Life Cycle Cost). Ele permite controlar ativos físicos, despesas de capital (CAPEX) e despesas operacionais (OPEX), gerenciar empresas e usuários, além de realizar estudos econômicos (como curva LCC e valor presente). O sistema também inclui integrações como pagamentos via PagSeguro, editor de texto enriquecido TinyMCE e geração de relatórios em PDF com mPDF.
 
 # Tecnologias
