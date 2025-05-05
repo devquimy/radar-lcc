@@ -1,0 +1,8 @@
+/DOCS
+/DOCS/*
+/MATERIAL_CLIENTE/
+/MATERIAL_CLIENTE/*
+/.env
+/.env_production
+/public/relatorios
+node_modules

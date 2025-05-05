@@ -1,0 +1,304 @@
+body{
+    font-size: 0.9rem;
+    color:#333;
+    font-family: "Quicksand", sans-serif;
+}
+.table thead th{
+    background-color: #eee;
+    border:none;
+    padding: .60rem;
+}
+.table tbody td{
+    padding: .38rem;
+}
+.btn-circle.btn-sm, .btn-group-sm>.btn-circle.btn{
+    height: 1.4rem;
+    width: 1.4rem
+}
+.bg-gradient-primary{
+    /*background-image: linear-gradient(180deg,#00343e 10%,#224abe 100%);*/
+    background-color: #003262;
+    background-image: none;
+}
+.table{
+    color:#333;
+}
+.paginacao_bt{
+    border-radius: 4px;
+    padding:5px 7px 5px 10px;
+    margin: 2px;
+    background-color:lightblue;
+    border:1px solid lightblue;
+}
+a:link.paginacao_bt{
+    color:#222;
+    text-decoration: none;
+}
+.paginacao_bt_active{
+    background-color:darkblue !important;
+    border:1px solid darkblue !important;
+    color:white;
+}
+.paginacao_bt_disabled{
+    background-color:white !important;
+    border:1px solid lightblue !important;
+}
+.paginacao_espacamento{
+    border-top: 1px dashed #ddd;
+    padding-top:8px;
+    margin-top: 30px;
+}
+.btn-light{
+    background-color: white;
+    border: 1px solid #ccc;
+}
+.form-label{
+    padding-top:8px;
+    padding-right: 8px;
+}
+.busca_box .form-label{
+    padding-top:2px;
+}
+.mostra_senha{
+    cursor: pointer;
+}
+.errors_alert, .errors_alert_fixed{    
+    position: fixed;
+    right: 20px;
+    bottom: 20px;
+    display: grid;
+}
+.btn-icon-split {
+    justify-content: left;
+}
+.aviso_form{
+    background-color: #FFEE99;
+    margin: 0.8rem 0;
+    padding: 0.7rem;
+    border-radius: 5px;
+}
+
+.texto_branco{
+    color: #fff!important
+}
+
+.border_left_preto{
+    border-left: 0.25rem solid #333!important;
+}
+.texto_preto{
+    color: #333!important
+}
+
+.border_left_verde{
+    border-left: 0.25rem solid #4EDF62!important;
+}
+.texto_verde{
+    color: #4EDF62!important
+}
+
+.border_left_azul{
+    border-left: 0.25rem solid #4E73DF!important;
+}
+.texto_azul{
+    color: #4E73DF!important
+}
+
+.meta_vendas_positivo{
+    border-left: 0.25rem solid green!important;
+    background-color: #6DD76D;
+    color: white;
+}
+
+.meta_vendas_negativo{
+    border-left: 0.25rem solid red!important;
+    background-color: #ff6666;
+    color:white;
+}
+
+.bola_legenda{
+    border-radius:100%;
+}
+
+.bg_preto{
+    background-color: #333!important
+}
+.bg_verde{
+    background-color: #4EDF62!important
+}
+.bg_azul{
+    background-color: #4E73DF!important
+}
+.sub_menu_item{
+    border:1px solid #224abe;
+    width: fit-content;
+}
+
+.chart-area {
+    height: fit-content;
+}
+
+.col-xs-5ths,
+.col-sm-5ths,
+.col-md-5ths,
+.col-lg-5ths {
+    position: relative;
+    min-height: 1px;
+    padding-right: 15px;
+    padding-left: 15px;
+}
+
+.col-xs-5ths {
+    width: 20%;
+    float: left;
+}
+
+.busca_realizada{
+    font-size: 12px;
+    margin-left: 5px;
+    color: green;
+    display: none;
+}
+
+.form-row div {
+    margin-bottom: 0.5rem;
+}
+
+.container, .container-fluid, .container-lg, .container-md, .container-sm, .container-xl {
+    max-width: 1440px;
+}
+
+.btn-rounded.btn-sm, .btn-group-sm>.btn-rounded.btn{
+    height: 1.4rem;
+    width:100px;
+    font-size:10px;
+}
+.btn-primary{
+    background-color: #efaa25;
+    border-color: #efaa25;
+}
+.text-primary {
+    color: #6f89d6 !important;
+}
+.sidebar .sidebar-brand {
+    height: auto;
+}
+.creditos_topo{
+    padding-top:24px;
+    padding-right: 10px;;
+}
+.topbar{
+    border-bottom: 2px solid #efaa25;
+}
+.sticky-footer{
+    border-top: 2px solid #efaa25;
+}
+label{
+    margin-bottom: .1rem;
+    margin-top: 0.4rem;
+}
+footer.sticky-footer {
+    margin-top: 2rem;
+}
+.card-form{
+    background-color:#f8f9fc;
+    border-radius:8px;
+    border:1px solid #e2e9ed;
+    padding-bottom: 1.5rem !important;
+    padding-top: .5rem !important;
+}
+.table-default{
+    width: 100%;
+    background-color:white;
+}
+.table-default thead{
+    background-color:#ddd;
+    font-weight: bold;
+    text-align: center;
+}
+.table-default td, .table-default th{
+    padding:0.2rem;
+    vertical-align: middle;
+    border: 1px solid #eee;
+}
+.table-default-sm .input-group-text{
+    font-size: 10px !important;
+    padding: 0.1rem !important;
+}
+.table-default-sm .form-control{
+    font-size: 11px !important;
+    padding: 0.1rem !important;
+}
+
+
+@media (max-width: 768px) {
+    .creditos_topo_desktop{
+        display: none;
+    }
+    .creditos_topo_mobile{
+        display: block;
+    }
+    .container-fluid{
+        padding-left: 0.5rem;
+        padding-right: 0.5rem;
+    }
+    .table-default .input-group-text{
+        font-size: 10px !important;
+        padding: 0.1rem !important;
+    }
+    .table-default .form-control{
+        font-size: 11px !important;
+        padding: 0.1rem !important;
+    }
+    .table-default td, .table-default th{
+        font-size: 11px;
+    }
+    .navbar h4{
+        font-size:18px;
+        padding-top:5px;
+    }
+    .table td, .table th{
+        font-size: 12px;
+    }
+}
+
+@media (min-width: 768px) {
+    .col-sm-5ths {
+        width: 20%;
+        float: left;
+    }
+    .sidebar {
+        width: 10rem!important;
+    }
+    .sidebar .nav-item .nav-link{
+        width:10.5rem;
+    }
+    .sidebar.toggled .sidebar-brand .sidebar-brand-text {
+        display: inline;
+    }
+    .creditos_topo_desktop{
+        display: block;
+    }
+    .creditos_topo_mobile{
+        display: none;
+    }
+}
+
+@media (min-width: 992px) {
+    .col-md-5ths {
+        width: 20%;
+        float: left;
+    }
+}
+
+@media (min-width: 1200px) {
+    .col-lg-5ths {
+        width: 20%;
+        float: left;
+    }
+}
+
+@media (min-width: 1px){
+    .sidebar .sidebar-brand .sidebar-brand-text {
+        display: inline;
+    }
+}
