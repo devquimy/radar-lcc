@@ -1,66 +1,181 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
+# Radar LCC
 
-<p align="center">
-<a href="https://github.com/laravel/framework/actions"><img src="https://github.com/laravel/framework/workflows/tests/badge.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
-</p>
+Introdução
+O Radar LCC é um sistema web desenvolvido em Laravel 11 (PHP 8.2) voltado para gestão e análise de custos do ciclo de vida (LCC – Life Cycle Cost). Ele permite controlar ativos físicos, despesas de capital (CAPEX) e despesas operacionais (OPEX), gerenciar empresas e usuários, além de realizar estudos econômicos (como curva LCC e valor presente). O sistema também inclui integrações como pagamentos via PagSeguro, editor de texto enriquecido TinyMCE e geração de relatórios em PDF com mPDF.
 
-## About Laravel
+# Tecnologias
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+O projeto utiliza tecnologias modernas de back-end e front-end, incluindo:
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+## Laravel 11 (PHP 8.2)
+ Framework PHP para a lógica do servidor, rotas, autenticação e models.
+## MySQL
+ Banco de dados relacional (padrão Laravel) para armazenamento das tabelas.
+## Bootstrap 4.1.3 e TailwindCSS 3
+ Frameworks CSS para estilização de interfaces.
+## Alpine.js
+ Para interações dinâmicas leves no front-end.
+## TinyMCE
+ Editor de texto enriquecido utilizado em formulários HTML (via componente Blade).
+## PagSeguro
+ Integração de pagamentos (configurada em config/pagseguro.php).
+## mPDF
+ Biblioteca PHP para geração de arquivos PDF (usada em relatórios de estudo).
+## Laravel Breeze
+ Scaffold de autenticação (login/registro/confirmar senha) instalado para gerenciar usuários.
+## PestPHP/PHPUnit
+ Frameworks de testes automatizados para garantir qualidade do código.
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
 
-## Learning Laravel
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
+# Instalação
 
-You may also try the [Laravel Bootcamp](https://bootcamp.laravel.com), where you will be guided through building a modern Laravel application from scratch.
+Antes de tudo, certifique-se de ter instalados PHP 8.2 e Composer, além de um servidor MySQL configurado. Também é necessário Node.js (para o processamento de assets via Vite). Os requisitos detalhados estão em Requisitos.txt.
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains thousands of video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+1. Clonar o repositório:
+```bash
+git clone https://github.com/devquimy/radar-lcc.git
+cd radar-lcc
+```
 
-## Laravel Sponsors
+2. Instalar dependências PHP:
+```bash
+composer install
+```
 
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the [Laravel Partners program](https://partners.laravel.com).
+3. Instalar dependências JavaScript:
+```bash
+npm install
+npm run dev   # Compila os assets front-end (ou npm run build para produção)
+```
 
-### Premium Partners
+4. Configurar variáveis de ambiente:
 
-- **[Vehikl](https://vehikl.com/)**
-- **[Tighten Co.](https://tighten.co)**
-- **[WebReinvent](https://webreinvent.com/)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Curotec](https://www.curotec.com/services/technologies/laravel/)**
-- **[Cyber-Duck](https://cyber-duck.co.uk)**
-- **[DevSquad](https://devsquad.com/hire-laravel-developers)**
-- **[Jump24](https://jump24.co.uk)**
-- **[Redberry](https://redberry.international/laravel/)**
-- **[Active Logic](https://activelogic.com)**
-- **[byte5](https://byte5.de)**
-- **[OP.GG](https://op.gg)**
+Copie o arquivo de exemplo .env.example para .env.
+No .env, defina as credenciais do banco de dados (DB_HOST, DB_PORT, DB_DATABASE, DB_USERNAME, DB_PASSWORD) e as chaves de API do PagSeguro (PAGSEGURO_TOKEN, PAGSEGURO_SANDBOX, PAGSEGURO_NOTIFICATION).
 
-## Contributing
+Gere a chave da aplicação:
+```bash
+ php artisan key:generate.
+```
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+5. Banco de dados e migrações:
+```bash
+php artisan migrate
+php artisan db:seed    # Se houver seeders configurados (opcional)
+```
 
-## Code of Conduct
+Os arquivos de migração em database/migrations/ criam as tabelas users, cache e jobs. Outros modelos precisam de tabelas que podem ser criadas manualmente ou por migrações adicionais.
 
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
 
-## Security Vulnerabilities
 
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
 
-## License
+## Estrutura do Projeto
 
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+Abaixo está um resumo da estrutura do projeto, com explicação dos principais arquivos e pastas:
+
+### `app/` – Código-fonte principal (lógica de negócio)
+
+- `.DS_Store` – Arquivo do macOS (inútil).
+- `Helpers/helper.php` – Funções auxiliares globais (ex: `verificarUsuarioLogado()`).
+- `Http/Controllers/` – Controladores das requisições:
+  - `AtivoFisicoController.php` – CRUD de Ativos Físicos e estudos.
+  - `CapexController.php` – CRUD de CAPEX.
+  - `CreditoController.php` – Gerencia Créditos e planos.
+  - `CreditosUsuariosController.php` – Créditos por usuário.
+  - `DocumentosController.php` – Upload/edição de Documentos.
+  - `EmpresaController.php` – CRUD de Empresas.
+  - `EstudosController.php` – Estudos de LCC, relatórios.
+  - `InflacaoController.php` – Índices de Inflação.
+  - `NiveisAcessoController.php` – Controle de permissões.
+  - `OpexController.php` – CRUD de OPEX.
+  - `PedidosController.php` – Geração de Pedidos (com PagSeguro).
+  - `UsuarioController.php` – CRUD de Usuários e vínculo com empresas.
+  - Subpasta `Auth/` – Autenticação (Laravel Breeze).
+  - `ProfileController.php` – Perfil do usuário logado.
+- `Http/Requests/` – Validação de requisições:
+  - `Auth/LoginRequest.php`, `ProfileUpdateRequest.php`.
+- `Models/` – Modelos Eloquent:
+  - Econômicos: `AtivoFisico`, `Capex`, `Opex`, `Inflacao`, `ValorPresente`, etc.
+  - Créditos: `Credito`, `CreditoUsuario`, `HistoricoTransacaoCredito`.
+  - Empresa: `Empresa`, `UserEmpresa`, `LogRemocaoEmpresa`.
+  - Outros: `Estudo`, `NiveisAcesso`, `Pedido`, `User`, `Documento`.
+- `Providers/` – Service Providers do Laravel:
+  - `AppServiceProvider.php` – (padrão Laravel).
+- `View/Components/` – Componentes Blade:
+  - `AppLayout`, `GuestLayout`, `Forms/tinymceEditor.php`, `Head/tinymceConfig.php`.
+
+### `config/` – Configurações
+
+- `app.php`, `auth.php`, `cache.php`, `database.php`, `filesystems.php`, `logging.php`, `mail.php`, `queue.php`, `services.php`, `session.php`.
+- `pagseguro.php` – Configuração da API do PagSeguro.
+
+### `templates_layout/` – Templates PHP antigos
+
+- Ex: `ativos_fisicos_form.php`, `capex_form.php`, `curva_lcc.php`, `creditos.php`, `timeline.php`, etc.
+
+### `routes/` – Definição das rotas
+
+- `web.php` – Rotas principais.
+- `auth.php` – Login, registro, etc.
+- `console.php` – Comandos personalizados.
+
+### `database/` – Banco de dados
+
+- `migrations/` – Tabelas padrão (`users`, `cache`, `jobs`).
+- `seeders/` – `DatabaseSeeder.php` (sem dados por padrão).
+
+### `resources/` – Front-end
+
+- `views/` – Blade templates por domínio:
+  - Pastas: `ativo_fisico/`, `capex/`, `documento/`, `estudo/`, etc.
+  - `layouts/`, `components/`, arquivos soltos como `login.blade.php`, `welcome.blade.php`.
+- Assets são gerados via Vite (ficam em `public/`).
+
+### `public/` – Arquivos públicos
+
+- `index.php` – Front controller.
+- `css/`, `js/`, `img/`, `webfonts/` – Assets compilados.
+- Outros: `.htaccess`, `favicon.ico`, `robots.txt`, `termo_uso.docx`.
+
+### `tests/` – Testes automatizados
+
+- `Feature/`, `Unit/` – Testes de funcionalidade e unidade.
+- `Pest.php`, `TestCase.php` – Configuração de testes.
+
+### Arquivos na raiz do projeto
+
+- `artisan` – CLI do Laravel.
+- `composer.json`, `composer.lock` – Dependências PHP.
+- `package.json`, `vite.config.js`, `tailwind.config.js`, `postcss.config.js` – Front-end (Vite, Tailwind).
+- `phpunit.xml` – Configuração de testes.
+- `Requisitos.txt` – Requisitos mínimos (PHP 8.2, MySQL, Laravel 11).
+- `.gitignore` – Itens ignorados pelo Git.
+- `storage/`, `bootstrap/`, `vendor/` – Pastas internas do Laravel.
+
+
+# Execução
+Após instalação, rode o servidor de desenvolvimento do Laravel:
+```bash
+php artisan serve
+``` 
+Isso iniciará a aplicação em http://localhost:8000/. Acesse essa URL no navegador para usar o sistema. Outras dicas de execução:
+
+Se usar Laravel Sail (Docker), execute ./vendor/bin/sail up para iniciar containers (requer configurar arquivo .env).
+
+Para rodar testes automatizados, use:
+```bash
+./vendor/bin/pest    # ou "php artisan test"
+```
+
+Sempre atualize as migrações depois de alterações:
+```bash
+php artisan migrate:fresh --seed
+``` 
+Compile assets em produção com:
+```bash
+npm run build
+``` 
+
+# Licença
+Este projeto é licenciado sob a licença MIT (conforme definido em composer.json). Isso permite uso e modificação livre do código, desde que se mantenha a atribuição adequada.
