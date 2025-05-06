@@ -25,7 +25,7 @@
                                 </h3>
                             </div>
                             <div class="col-md-6" style="text-align:center">
-                                <img src="{{ asset('/public/img/seta-para-baixo.png') }}" alt="" srcset="" style="width:100px">
+                                <img src="{{ asset('./img/seta-para-baixo.png') }}" alt="" srcset="" style="width:100px">
                             </div>
                         </div>
                     </div>
@@ -42,7 +42,7 @@
                                 </h3>
                             </div>
                             <div class="col-md-6" style="text-align:center">
-                                <img src="{{ asset('/public/img/seta-para-cima.png') }}" alt="" srcset="" style="width:100px">
+                                <img src="{{ asset('./img/seta-para-cima.png') }}" alt="" srcset="" style="width:100px">
                             </div>
                         </div>
                     </div>
