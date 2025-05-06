@@ -6,7 +6,7 @@ if(Auth::check()){
     echo "<script>window.location.href = '" . url('/ativos_fisicos') . "'</script>";
 }
 ?>
-<body style="background-image: url({{ asset('/public/img/fundo_login.jpg') }}); background-position: bottom;">
+<body style="background-image: url({{ asset('/img/fundo_login.jpg') }}); background-position: bottom;">
     <div class="container">
         <div class="d-flex justify-content-center h-100">
             <div class="card">

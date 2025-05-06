@@ -5,18 +5,18 @@
         </div>
     </div>
 </footer>
-<script src="{{ asset('/public/js/jquery.min.js') }}"></script>
-<script src="{{ asset('/public/js/bootstrap.bundle.min.js') }}"></script>
-<script src="{{ asset('/public/js/jquery.easing.min.js') }}"></script>
-<script src="{{ asset('/public/js/sb-admin-2.min.js') }}"></script>
-<script src="{{ asset('/public/js/Chart.min.js') }}"></script>
-<script src="{{ asset('/public/js/chart-area-demo.js') }}"></script>
-<script src="{{ asset('/public/js/chart-pie-demo.js') }}"></script>
-<script src="{{ asset('/public/js/jquery.maskedinput.min.js') }}"></script>
-<script src="{{ asset('/public/js/jquery.mask.min.js') }}"></script>
-<script src="{{ asset('/public/js/mask.js') }}"></script>
-<script src="{{ asset('/public/js/custom.js') }}"></script>
-<script src="{{ asset('/public/js/flash.min.js') }}"></script>
+<script src="{{ asset('./js/jquery.min.js') }}"></script>
+<script src="{{ asset('./js/bootstrap.bundle.min.js') }}"></script>
+<script src="{{ asset('./js/jquery.easing.min.js') }}"></script>
+<script src="{{ asset('./js/sb-admin-2.min.js') }}"></script>
+<script src="{{ asset('./js/Chart.min.js') }}"></script>
+<script src="{{ asset('./js/chart-area-demo.js') }}"></script>
+<script src="{{ asset('./js/chart-pie-demo.js') }}"></script>
+<script src="{{ asset('./js/jquery.maskedinput.min.js') }}"></script>
+<script src="{{ asset('./js/jquery.mask.min.js') }}"></script>
+<script src="{{ asset('./js/mask.js') }}"></script>
+<script src="{{ asset('./js/custom.js') }}"></script>
+<script src="{{ asset('./js/flash.min.js') }}"></script>
 
 <script>
     // Adiciona a classe "toggled" antes do DOM ser completamente carregado

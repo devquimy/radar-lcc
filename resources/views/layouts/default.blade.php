@@ -9,21 +9,21 @@
     <meta name="robots" content="noindex, nofollow">
 
     <title>Radar LCC</title>
-    <link rel="icon" href="{{ asset('/public/img/favicon.jpeg') }}">
+    <link rel="icon" href="{{ asset('/img/favicon.jpeg') }}">
 
     @hasSection('content-auth')
-        <link href="{{ asset('/public/css/all.min.css') }}" rel="stylesheet" type="text/css">
-        <link href="{{ asset('/public/css/sb-admin-2.min.css') }}" rel="stylesheet">
-        <link href="{{ asset('/public/css/custom.css') }}" rel="stylesheet">
-        <link href="{{ asset('/public/css/timeline.css') }}" rel="stylesheet">
-        <link rel="stylesheet" href="{{ asset('/public/css/flash.min.css') }}">
+        <link href="{{ asset('css/all.min.css') }}" rel="stylesheet" type="text/css">
+        <link href="{{ asset('css/sb-admin-2.min.css') }}" rel="stylesheet">
+        <link href="{{ asset('css/custom.css') }}" rel="stylesheet">
+        <link href="{{ asset('css/timeline.css') }}" rel="stylesheet">
+        <link rel="stylesheet" href="{{ asset('css/flash.min.css') }}">
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
     @endif
 
     @hasSection('content')
-        <link rel="stylesheet" href="{{ asset('/public/css/bootstrap.min.css') }}">
-        <link rel="stylesheet" href="{{ asset('/public/css/all.css') }}"> 
-        <link rel="stylesheet" href="{{ asset('/public/css/login.css') }}">
+        <link rel="stylesheet" href="{{ asset('/css/bootstrap.min.css') }}">
+        <link rel="stylesheet" href="{{ asset('/css/all.css') }}"> 
+        <link rel="stylesheet" href="{{ asset('/css/login.css') }}">
     @endif
 
     <link rel="preconnect" href="https://fonts.googleapis.com">

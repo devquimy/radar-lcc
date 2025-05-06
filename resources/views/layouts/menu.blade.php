@@ -1,6 +1,6 @@
 <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
     <a class="sidebar-brand" href="/index.html">
-        <img src="{{ asset('/public/img/logo_radarlcc.png') }}" class="img-fluid" alt="Logo">
+        <img src="{{ asset('./img/logo_radarlcc.png') }}" class="img-fluid" alt="Logo">
         <br>
     </a>
     <hr class="sidebar-divider my-0">
