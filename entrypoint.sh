@@ -1,12 +1,9 @@
 #!/bin/bash
-
 echo "🚀 Aguardando MySQL iniciar..."
-until nc -z -v -w30 mysql 3306
-do
+until nc -z -v -w30 mysql 3306; do
   echo "Aguardando banco de dados..."
   sleep 5
 done
-
 echo "✅ Banco de dados disponível!"
 
 # Instala dependências, roda migrations, etc

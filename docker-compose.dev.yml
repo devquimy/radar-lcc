@@ -4,7 +4,7 @@ services:
   app:
     build:
       context: .
-      dockerfile: Dockerfile
+      dockerfile: Dockerfile.dev
     container_name: radar-app
     working_dir: /var/www/html
     ports:
@@ -26,16 +26,19 @@ services:
     command: sh -c "npm install && npm run dev"
 
   mysql:
-  image: mysql:8.0
-  container_name: radar-mysql
-  restart: unless-stopped
-  environment:
-    MYSQL_ROOT_PASSWORD: root
-    MYSQL_DATABASE: radar
-    MYSQL_USER: radaruser
-    MYSQL_PASSWORD: secret
-  ports:
-    - "3306:3306"
-  volumes:
-    - mysql-data:/var/lib/mysql
-    - ./docker/mysql-init:/docker-entrypoint-initdb.d
+    image: mysql:8.0
+    container_name: radar-mysql
+    restart: unless-stopped
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: radarlcc
+      MYSQL_USER: radaruser
+      MYSQL_PASSWORD: secret
+    ports:
+      - "3306:3306"
+    volumes:
+      - mysql-data:/var/lib/mysql
+      - ./docker/mysql-init:/docker-entrypoint-initdb.d
+
+volumes:
+  mysql-data:
