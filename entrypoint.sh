@@ -1,13 +1,16 @@
-#!/bin/bash
-echo "🚀 Aguardando MySQL iniciar..."
-until nc -z -v -w30 mysql 3306; do
-  echo "Aguardando banco de dados..."
-  sleep 5
-done
-echo "✅ Banco de dados disponível!"
+#!/usr/bin/env sh
+set -e
 
-# Instala dependências, roda migrations, etc
-composer install
-php artisan migrate --force
-php artisan db:seed --force
-php artisan serve --host=0.0.0.0 --port=8000
+# Se a variável WAIT_HOSTS estiver definida (via docker-compose), aguarde
+if [ -n "$WAIT_HOSTS" ]; then
+  echo "⏳ Aguardando serviços: $WAIT_HOSTS"
+  /usr/local/bin/wait-for-it.sh $WAIT_HOSTS --timeout=60 --strict
+  echo "✅ Serviços prontos!"
+fi
+
+# Aqui você pode rodar migrations/seeders, se quiser:
+# php artisan migrate --force
+# php artisan db:seed --force
+
+# Finalmente executa o comando passado no CMD (php artisan serve ...)
+exec "$@"

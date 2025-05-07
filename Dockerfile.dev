@@ -1,29 +1,35 @@
 FROM php:8.2-fpm
 
-# Instala dependências de sistema e extensões PHP, incluindo netcat
+# 1. Instala dependências de sistema e extensões PHP
 RUN apt-get update && apt-get install -y \
-    git curl unzip zip libpng-dev libonig-dev libxml2-dev \
-    nodejs npm \
-    netcat-openbsd \
-  && docker-php-ext-install pdo_mysql mbstring exif pcntl bcmath gd
+      git curl unzip zip libpng-dev libonig-dev libxml2-dev \
+      nodejs npm \
+      netcat-openbsd \
+    && docker-php-ext-install pdo_mysql mbstring exif pcntl bcmath gd \
+    && rm -rf /var/lib/apt/lists/*
 
-# Instala Composer
+# 2. Instala o Composer
 COPY --from=composer:latest /usr/bin/composer /usr/bin/composer
 
 WORKDIR /var/www/html
 
-# Copia os arquivos da aplicação
+# 3. Copia o script wait-for-it
+COPY wait-for-it.sh /usr/local/bin/wait-for-it.sh
+RUN chmod +x /usr/local/bin/wait-for-it.sh
+
+# 4. Copia o entrypoint que irá chamar o wait-for-it e depois o comando principal
+COPY entrypoint.sh /usr/local/bin/entrypoint.sh
+RUN chmod +x /usr/local/bin/entrypoint.sh
+
+# 5. Copia o restante da aplicação
 COPY . .
 
-# Instala dependências do Laravel
+# 6. Instala dependências PHP
 RUN composer install --no-interaction --prefer-dist
 
-# Permissões para diretórios
+# 7. Ajusta permissões
 RUN chown -R www-data:www-data storage bootstrap/cache
 
-# Comando padrão: inicia o servidor Laravel
+# 8. Define entrypoint e comando padrão
+ENTRYPOINT ["entrypoint.sh"]
 CMD ["php", "artisan", "serve", "--host=0.0.0.0", "--port=8000"]
-
-COPY entrypoint.sh /entrypoint.sh
-RUN chmod +x /entrypoint.sh
-ENTRYPOINT ["/entrypoint.sh"]

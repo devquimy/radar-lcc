@@ -1,6 +1,72 @@
+# version: '3.8'
+
+# services:
+#   app:
+#     build:
+#       context: .
+#       dockerfile: Dockerfile.dev
+#     container_name: radar-app
+#     working_dir: /var/www/html
+#     ports:
+#       - "8000:8000"
+#     volumes:
+#       - .:/var/www/html
+#     depends_on:
+#       - mysql
+#     environment:
+#       WAIT_HOSTS: mysql:3306
+#     command: php artisan serve --host=0.0.0.0 --port=8000
+
+#   node:
+#     image: node:18-alpine
+#     container_name: radar-node
+#     working_dir: /app
+#     volumes:
+#       - .:/app
+#     command: sh -c "npm install && npm run dev"
+
+#   mysql:
+#     image: mysql:8.0
+#     container_name: radar-mysql
+#     restart: unless-stopped
+#     environment:
+#       MYSQL_ROOT_PASSWORD: root
+#       MYSQL_DATABASE: radarlcc
+#       MYSQL_USER: radaruser
+#       MYSQL_PASSWORD: secret
+#     ports:
+#       - "3306:3306"
+#     volumes:
+#       - mysql-data:/var/lib/mysql
+#       - ./docker/mysql-init:/docker-entrypoint-initdb.d
+
+# volumes:
+#   mysql-data:
+
+
 version: '3.8'
 
 services:
+  mysql:
+    image: mysql:8.0
+    container_name: radar-mysql
+    restart: unless-stopped
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: radar
+      MYSQL_USER: radaruser
+      MYSQL_PASSWORD: secret
+    ports:
+      - "3306:3306"
+    volumes:
+      - mysql-data:/var/lib/mysql
+      - ./docker/mysql-init:/docker-entrypoint-initdb.d
+    healthcheck:
+      test: ["CMD", "mysqladmin", "ping", "-h", "localhost", "-uroot", "-proot"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
   app:
     build:
       context: .
@@ -12,10 +78,12 @@ services:
     volumes:
       - .:/var/www/html
     depends_on:
-      - mysql
+      mysql:
+        condition: service_healthy
     environment:
+      # usado pelo wait-for-it.sh
       WAIT_HOSTS: mysql:3306
-    command: php artisan serve --host=0.0.0.0 --port=8000
+    command: ["./wait-for-it.sh", "mysql:3306", "--", "php", "artisan", "serve", "--host=0.0.0.0", "--port=8000"]
 
   node:
     image: node:18-alpine
@@ -24,21 +92,6 @@ services:
     volumes:
       - .:/app
     command: sh -c "npm install && npm run dev"
-
-  mysql:
-    image: mysql:8.0
-    container_name: radar-mysql
-    restart: unless-stopped
-    environment:
-      MYSQL_ROOT_PASSWORD: root
-      MYSQL_DATABASE: radarlcc
-      MYSQL_USER: radaruser
-      MYSQL_PASSWORD: secret
-    ports:
-      - "3306:3306"
-    volumes:
-      - mysql-data:/var/lib/mysql
-      - ./docker/mysql-init:/docker-entrypoint-initdb.d
 
 volumes:
   mysql-data:
