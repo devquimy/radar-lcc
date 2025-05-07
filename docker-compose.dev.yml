@@ -1,0 +1,41 @@
+version: '3.8'
+
+services:
+  app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: radar-app
+    working_dir: /var/www/html
+    ports:
+      - "8000:8000"
+    volumes:
+      - .:/var/www/html
+    depends_on:
+      - mysql
+    environment:
+      WAIT_HOSTS: mysql:3306
+    command: php artisan serve --host=0.0.0.0 --port=8000
+
+  node:
+    image: node:18-alpine
+    container_name: radar-node
+    working_dir: /app
+    volumes:
+      - .:/app
+    command: sh -c "npm install && npm run dev"
+
+  mysql:
+  image: mysql:8.0
+  container_name: radar-mysql
+  restart: unless-stopped
+  environment:
+    MYSQL_ROOT_PASSWORD: root
+    MYSQL_DATABASE: radar
+    MYSQL_USER: radaruser
+    MYSQL_PASSWORD: secret
+  ports:
+    - "3306:3306"
+  volumes:
+    - mysql-data:/var/lib/mysql
+    - ./docker/mysql-init:/docker-entrypoint-initdb.d
