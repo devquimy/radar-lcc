@@ -34,11 +34,12 @@ class AuthenticatedSessionController extends Controller
         $credentials = $request->validate([
             'email' => ['required', 'email'],
             'password' => ['required'],
+            'status'  => 'ativo',
         ]);
  
         if (Auth::attempt($credentials)) {
             $request->session()->regenerate();
-
+            
             if(Auth::user()->status == 0){
                 Auth::logout();
 

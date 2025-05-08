@@ -10,4 +10,5 @@ class NiveisAcesso extends Model
     use HasFactory;
 
     protected $table = 'niveis_acessos';
+    protected $fillable = ['nome'];
 }

@@ -100,8 +100,9 @@ class RegisteredUserController extends Controller
         $user = User::create([
             'name' => $request->name,
             'email' => $request->email,
-            'nivel_acesso_id' => 1,
             'password' => Hash::make($request->password),
+            'nivel_acesso_id' => 1,
+            'status' => 'ativo'
         ]);
 
         $empresa = new Empresa();
