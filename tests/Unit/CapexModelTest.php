@@ -10,17 +10,14 @@ class CapexModelTest extends TestCase
     protected function setUp(): void
     {
         parent::setUp();
-        // Desabilita o mass assignment guard globalmente, para podermos popular o model diretamente
         Model::unguard();
     }
 
     protected function tearDown(): void
     {
-        // Reativa o guard
         Model::reguard();
         parent::tearDown();
     }
-
 
     public function test_fillable_attributes()
     {
