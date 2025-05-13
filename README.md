@@ -28,6 +28,67 @@ O projeto utiliza tecnologias modernas de back-end e front-end, incluindo:
 
 
 
+## Ambiente de Desenvolvimento
+
+Siga os passos abaixo para subir o ambiente de desenvolvimento localmente usando Docker:
+
+1. **Clone o repositório e acesse a branch de ambiente de dev**  
+```bash
+   git clone https://github.com/devquimy/radar-lcc.git
+   cd radar-lcc
+   git checkout dev-environment
+```
+Copie o arquivo de variáveis de ambiente
+
+```bash
+  cp .env.example .env 
+  ↳ Ajuste as variáveis em .env conforme necessário (por exemplo, APP_URL, credenciais do banco).
+``` 
+
+Suba os containers
+```bash
+docker-compose -f docker-compose.dev.yml up -d --build
+```
+
+Isso irá:
+
+Construir as imagens (caso não existam)
+
+Subir os containers em segundo plano (-d)
+
+Instale dependências e gere a chave da aplicação
+
+```bash
+docker-compose exec app composer install
+docker-compose exec app php artisan key:generate
+```
+
+Execute migrations e seeders
+
+```bash
+docker-compose exec app php artisan migrate --seed
+```
+
+Acesse a aplicação
+
+Laravel: http://localhost:8000
+
+MySQL: 127.0.0.1:3306 (usuário/senha definidos no .env)
+
+Comandos úteis
+Parar e remover containers / redes / volumes
+
+```bash
+docker-compose -f docker-compose.dev.yml down
+```
+
+Ver logs em tempo real
+```bash
+docker-compose -f docker-compose.dev.yml logs -f
+```
+
+
+
 # Instalação
 
 Antes de tudo, certifique-se de ter instalados PHP 8.2 e Composer, além de um servidor MySQL configurado. Também é necessário Node.js (para o processamento de assets via Vite). Os requisitos detalhados estão em Requisitos.txt.
@@ -176,6 +237,9 @@ Compile assets em produção com:
 ```bash
 npm run build
 ``` 
+
+
+
 
 # Licença
 Este projeto é licenciado sob a licença MIT (conforme definido em composer.json). Isso permite uso e modificação livre do código, desde que se mantenha a atribuição adequada.
