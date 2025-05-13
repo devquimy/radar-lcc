@@ -167,6 +167,11 @@ Para rodar testes automatizados, use:
 ```bash
 ./vendor/bin/pest    # ou "php artisan test"
 ```
+Os testes usarão um banco de dados SQLite em memória (ou outro configurado) e limparão os dados a cada execução usando o trait `RefreshDatabase`.
+
+### Integração Contínua (CI)
+
+O projeto está integrado com GitHub Actions para executar os testes automaticamente em cada push ou pull request. A workflow de testes (`.github/workflows/test.yml`) utiliza a action oficial de PHP para configurar o ambiente, instala as dependências com Composer e executa `php artisan test`:contentReference[oaicite:12]{index=12}. Em resumo, o CI verifica cada commit garantindo que nenhuma alteração quebre os testes existentes (continuously ensuring code quality).
 
 Sempre atualize as migrações depois de alterações:
 ```bash
